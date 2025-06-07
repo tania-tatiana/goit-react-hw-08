@@ -1,19 +1,24 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, lazy } from "react";
 import "./App.css";
-import { ContactForm } from "./components/ContactForm/ContactForm";
-import { SearchBox } from "./components/SearchBox/SearchBox";
-import { ContactList } from "./components/ContactList/ContactList";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "./redux/contactsOps";
-import { fetchContacts } from "./redux/contactsOps";
-import { selectError, selectLoading } from "./redux/contactsSlice";
+import { addContact } from "./redux/contacts/operations";
+import { fetchContacts } from "./redux/contacts/operations";
+import { selectError, selectLoading } from "./redux/contacts/selectors";
+import RestrictedRoute from "./RestrictedRoute";
+import PrivateRoute from "./PrivateRoute";
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const RegistrationPage = lazy(() =>
+  import("./pages/RegistrationPage/RegistrationPage")
+);
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 
-// const defaultData = [
-//   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-//   { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-//   { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-//   { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-// ];
+import { refreshUser } from "../redux/auth/operations";
+import { selectIsRefreshing } from "../redux/auth/selectors";
+
+// const TasksPage = lazy(() => import("../pages/TasksPage/TasksPage"));
+// const ProfilePage = lazy(() => import("../pages/ProfilePage/ProfilePage"));
 
 function App() {
   const dispatch = useDispatch();
@@ -25,13 +30,39 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="container">
-      <ContactForm />
-      <SearchBox />
-      {loading && <p>Loading contacts...</p>}
-      {error && <p style={{ color: "red" }}>Error: {error}</p>}
-      <ContactList />
-    </div>
+    // <div className="container">
+    //   <ContactForm />
+    //   <SearchBox />
+    //   {loading && <p>Loading contacts...</p>}
+    //   {error && <p style={{ color: "red" }}>Error: {error}</p>}
+    //   <ContactList />
+    // </div>
+    <Layout>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/profile"
+                component={<RegistrationPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/tasks" component={<LoginPage />} />
+            }
+          />
+          <Route
+            path="/tasks"
+            element={<PrivateRoute component={<ContactList />} />}
+          />
+        </Routes>
+      </Suspense>
+    </Layout>
   );
 }
 
