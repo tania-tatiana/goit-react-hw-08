@@ -3,7 +3,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "./redux/contacts/operations";
+// import { addContact } from "./redux/contacts/operations";
 import { fetchContacts } from "./redux/contacts/operations";
 import { selectError, selectLoading } from "./redux/contacts/selectors";
 import RestrictedRoute from "./RestrictedRoute";
@@ -14,8 +14,8 @@ const RegistrationPage = lazy(() =>
 );
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 
-import { refreshUser } from "../redux/auth/operations";
-import { selectIsRefreshing } from "../redux/auth/selectors";
+// import { refreshUser } from "../redux/auth/operations";
+// import { selectIsRefreshing } from "../redux/auth/selectors";
 
 // const TasksPage = lazy(() => import("../pages/TasksPage/TasksPage"));
 // const ProfilePage = lazy(() => import("../pages/ProfilePage/ProfilePage"));
