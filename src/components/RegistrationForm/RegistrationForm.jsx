@@ -6,10 +6,10 @@ import { register } from "../../redux/auth/operations";
 export default function RegistrationForm() {
   const dispatch = useDispatch();
 
-  //   const handleSubmit = (values, actions) => {
-  //     dispatch(register(values));
-  //     actions.resetForm();
-  //   };
+  const handleSubmit = (values, actions) => {
+    dispatch(register(values));
+    actions.resetForm();
+  };
 
   return (
     <Formik

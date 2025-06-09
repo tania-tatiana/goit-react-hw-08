@@ -6,10 +6,10 @@ import { logIn } from "../../redux/auth/operations";
 export default function LoginForm() {
   const dispatch = useDispatch();
 
-  //   const handleSubmit = (values, actions) => {
-  //     dispatch(logIn(values));
-  //     actions.resetForm();
-  //   };
+  const handleSubmit = (values, actions) => {
+    dispatch(logIn(values));
+    actions.resetForm();
+  };
 
   return (
     <Formik

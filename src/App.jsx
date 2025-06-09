@@ -8,6 +8,7 @@ import { fetchContacts } from "./redux/contacts/operations";
 import { selectError, selectLoading } from "./redux/contacts/selectors";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivateRoute from "./PrivateRoute";
+import ContactList from "./components/ContactList/ContactList";
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")

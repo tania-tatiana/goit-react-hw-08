@@ -7,7 +7,7 @@ import {
   selectNameFilter,
 } from "../../redux/filters/selectors";
 
-export const ContactList = () => {
+const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
 
   return (
@@ -23,3 +23,4 @@ export const ContactList = () => {
     </div>
   );
 };
+export default ContactList;
