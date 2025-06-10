@@ -1,0 +1,21 @@
+.link {
+  margin-right: 16px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #1976d2;
+  transition: color 0.2s ease;
+}
+
+.link:not(:last-child) {
+  margin-right: 16px;
+}
+
+.link:hover,
+.link.active {
+  color: #0d47a1;
+  text-decoration: underline;
+}
+.nav {
+  display: flex;
+  gap: 20px;
+}

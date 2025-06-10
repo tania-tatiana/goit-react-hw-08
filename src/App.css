@@ -1,8 +1,8 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  /* padding: 2rem;
+  text-align: center; */
 }
 
 .logo {
@@ -46,8 +46,8 @@ body {
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 16px;
-  display: flex;
+  /* padding: 0 16px; */
+  /* display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: stretch; */
 }
