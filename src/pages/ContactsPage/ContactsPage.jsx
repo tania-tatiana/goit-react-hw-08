@@ -1,13 +1,16 @@
 import { useEffect } from "react";
+import css from "./ContactsPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import TaskList from "../../components/TaskList/TaskList";
-import ContactEditor from "../../components/ContactEditor/ContactEditor";
+import ContactList from "../../components/ContactList/ContactList";
+// import ContactEditor from "../../components/ContactEditor/ContactEditor";
 import { fetchContacts } from "../../redux/contacts/operations";
 import { selectLoading } from "../../redux/contacts/selectors";
+import { ContactForm } from "../../components/ContactForm/ContactForm";
+import { SearchBox } from "../../components/SearchBox/SearchBox";
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
+  const loading = useSelector(selectLoading);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -15,10 +18,12 @@ export default function ContactsPage() {
 
   return (
     <>
-      <h1>Your tasks</h1>
-      <ContactEditor />
-      <div>{isLoading && "Request in progress..."}</div>
-      <TaskList />
+      <h1 className={css.title}>Your tasks</h1>
+      {/* <ContactEditor /> */}
+      <ContactForm />
+      <SearchBox />
+      {loading && <p>Loading contacts...</p>}
+      <ContactList />
     </>
   );
 }

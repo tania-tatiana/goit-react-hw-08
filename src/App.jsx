@@ -3,20 +3,19 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
-// import { addContact } from "./redux/contacts/operations";
+import { addContact } from "./redux/contacts/operations";
 import { fetchContacts } from "./redux/contacts/operations";
+import { refreshUser } from "./redux/auth/operations";
 import { selectError, selectLoading } from "./redux/contacts/selectors";
+// import { selectIsRefreshing } from "../redux/auth/selectors";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivateRoute from "./PrivateRoute";
-import ContactList from "./components/ContactList/ContactList";
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")
 );
+const ContactsPage = lazy(() => import("./pages/ContactsPage/ContactsPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
-
-// import { refreshUser } from "../redux/auth/operations";
-// import { selectIsRefreshing } from "../redux/auth/selectors";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,17 +23,10 @@ function App() {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    // <div className="container">
-    //   <ContactForm />
-    //   <SearchBox />
-    //   {loading && <p>Loading contacts...</p>}
-    //   {error && <p style={{ color: "red" }}>Error: {error}</p>}
-    //   <ContactList />
-    // </div>
     <Layout>
       <Suspense fallback={null}>
         <Routes>
@@ -51,12 +43,15 @@ function App() {
           <Route
             path="/login"
             element={
-              <RestrictedRoute redirectTo="/tasks" component={<LoginPage />} />
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginPage />}
+              />
             }
           />
           <Route
-            path="/tasks"
-            element={<PrivateRoute component={<ContactList />} />}
+            path="/contacts"
+            element={<PrivateRoute component={<ContactsPage />} />}
           />
         </Routes>
       </Suspense>

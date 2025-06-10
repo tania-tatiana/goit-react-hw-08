@@ -1,6 +1,6 @@
 // import { useDispatch } from "react-redux";
-// import { addTask } from "../../redux/tasks/operations";
-// import css from "./TaskEditor.module.css";
+// import { addTask } from "../../redux/contacts/operations";
+// import css from "./ContactEditor.module.css";
 
 // export default function TaskEditor() {
 //   const dispatch = useDispatch();

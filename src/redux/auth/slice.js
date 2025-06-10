@@ -44,12 +44,13 @@ const slice = createSlice({
       .addCase(logOut.pending, (state) => {
         state.loading = true;
       })
-      .addCase(logOut.fulfilled, (state) => {
-        state.user = { name: null, email: null };
+      .addCase(logOut.fulfilled, () => {
+        state.user = {
+          name: null,
+          email: null,
+        };
         state.token = null;
         state.isLoggedIn = false;
-        state.loading = false;
-        state.error = null;
       }),
 });
 

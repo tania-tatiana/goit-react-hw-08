@@ -1,9 +1,9 @@
-import styles from "./HomePage.module.css";
+import css from "./HomePage.module.css";
 export default function HomePage() {
   return (
     <div>
-      <h1 className={styles.title}>Hello, User!</h1>
-      <p className={styles.text}>This is text</p>
+      <h1 className={css.title}>Hello, User!</h1>
+      <p className={css.text}>This is text</p>
     </div>
   );
 }
