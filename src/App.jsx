@@ -18,9 +18,6 @@ const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 // import { refreshUser } from "../redux/auth/operations";
 // import { selectIsRefreshing } from "../redux/auth/selectors";
 
-// const TasksPage = lazy(() => import("../pages/TasksPage/TasksPage"));
-// const ProfilePage = lazy(() => import("../pages/ProfilePage/ProfilePage"));
-
 function App() {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
