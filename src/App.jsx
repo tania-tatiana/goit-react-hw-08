@@ -7,9 +7,10 @@ import { addContact } from "./redux/contacts/operations";
 import { fetchContacts } from "./redux/contacts/operations";
 import { refreshUser } from "./redux/auth/operations";
 import { selectError, selectLoading } from "./redux/contacts/selectors";
-// import { selectIsRefreshing } from "../redux/auth/selectors";
+import { selectIsRefreshing } from "./redux/auth/selectors";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivateRoute from "./PrivateRoute";
+
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")
@@ -21,12 +22,15 @@ function App() {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <h1>Refreshing user...</h1>
+  ) : (
     <Layout>
       <Suspense fallback={null}>
         <Routes>
@@ -35,7 +39,7 @@ function App() {
             path="/register"
             element={
               <RestrictedRoute
-                redirectTo="/profile"
+                redirectTo="/"
                 component={<RegistrationPage />}
               />
             }

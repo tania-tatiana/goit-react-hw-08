@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* розподіл елементів по краях */
   align-items: center;
   background-color: #e3f2fd;
   padding: 16px 32px;
@@ -12,8 +12,9 @@
 
 .navWrapper {
   display: flex;
-  gap: 750px;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 0;
 }

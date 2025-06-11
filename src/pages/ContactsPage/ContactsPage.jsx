@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import css from "./ContactsPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import ContactList from "../../components/ContactList/ContactList";
-// import ContactEditor from "../../components/ContactEditor/ContactEditor";
 import { fetchContacts } from "../../redux/contacts/operations";
 import { selectLoading } from "../../redux/contacts/selectors";
 import { ContactForm } from "../../components/ContactForm/ContactForm";
@@ -18,8 +17,7 @@ export default function ContactsPage() {
 
   return (
     <>
-      <h1 className={css.title}>Your tasks</h1>
-      {/* <ContactEditor /> */}
+      <h1 className={css.title}>Your contacts</h1>
       <ContactForm />
       <SearchBox />
       {loading && <p>Loading contacts...</p>}
